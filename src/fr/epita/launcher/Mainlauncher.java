@@ -33,7 +33,9 @@ public class Mainlauncher {	private static Jdbcidentitydao dao;
 		
 		// menu
 		String answer = menu(scanner);
+		while(answer!="e"){
 		
+			
 		switch (answer) {
 		case "a":
 			// creation
@@ -51,15 +53,29 @@ public class Mainlauncher {	private static Jdbcidentitydao dao;
 			// display 
 			listIdentities();
 			break;
+			
+		case "e":
+		System.out.println("Progam will exit now");
+		break;
+		
 		default:
 			System.out.println("This option is not recognized ("+ answer + ")");
 			break;
 		}
 		
-		scanner.close();
+		if(answer.equals("e"))
+		{
+			break;
+			
+		}else{
+			answer = menu(scanner);
+		}
+		
+		
+		
 
+	}scanner.close();
 	}
-
 	
 	private static void listIdentities() throws SQLException {  // throws sql exception
 		System.out.println("This is the list of all identities in the system");
@@ -133,6 +149,7 @@ public class Mainlauncher {	private static Jdbcidentitydao dao;
 	 // list of actions 
 	private static String menu(Scanner scanner) {   // parameter scanner 
 		System.out.println("You're authenticated");
+		
 		System.out.println("Here are the actions you can perform :");
 		System.out.println("a. Create an Identity");
 		System.out.println("b. Modify an Identity");
